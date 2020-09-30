@@ -9,8 +9,9 @@ class QuotesSpider(scrapy.Spider):
     ]
 
     def parse(self, response):
-        page = response.url.split("/")[-2]
-        filename = 'quotes-%s.html' % page
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-        self.log('Saved file %s' % filename)
+        for quote in response.css('div.quote'):
+            yield {
+                'text': quote.css('span.text::text').get(),
+                'text': quote.css('small.author::text').get(),
+                'text': quote.css('div.tags a.tag::text').getall(),
+            }
