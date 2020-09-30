@@ -1,4 +1,5 @@
 # scrape
+
 web scraping experiments
 
 It's time for me to update my web scraping skills.
@@ -14,6 +15,4 @@ The difficulty is I need to login to get my stuff.
 
 But let's be patient and start with the tutorial.
 
-https://docs.scrapy.org/en/latest/intro/tutorial.html
-
-
+<https://docs.scrapy.org/en/latest/intro/tutorial.html>
