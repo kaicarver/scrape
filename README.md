@@ -25,3 +25,8 @@ Well it's nice except the code example has about 10 bugs...
 This page will also help:
 
 <https://python.gotrained.com/scrapy-formrequest-logging-in/>
+
+So we have two working examples:
+
+    scrapy crawl quotes
+    scrapy crawl login

@@ -2,8 +2,8 @@ import scrapy
 import requests
 
 
-class QuotesSpider(scrapy.Spider):
-    name = 'quotes'
+class LoginSpider(scrapy.Spider):
+    name = 'login'
     allowed_domains = ['quotes.toscrape.com']
     start_urls = ['http://quotes.toscrape.com/login']
 
@@ -12,4 +12,4 @@ class QuotesSpider(scrapy.Spider):
         yield scrapy.FormRequest.from_response(response, formdata={'csrf_token': csrf_token, 'user': 'user', 'pass': 'pass'}, callback=self.parse_after_login)
 
     def parse_after_login(self, response):
-        pass
+        print("logged in!")
