@@ -5,7 +5,7 @@ class QuotesSpider(scrapy.Spider):
     name = "quotes"
 
     def start_requests(self):
-        url = 'http://quotes.toscrape.com/page/1'
+        url = 'http://quotes.toscrape.com/'
         tag = getattr(self, 'tag', None)
         if tag is not None:
             url = url + 'tag/' + tag
