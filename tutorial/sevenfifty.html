@@ -1,0 +1,903 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+<title>Write your words</title>
+<link href='/images/favicon.gif' rel='shortcut icon' />
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<link href="/stylesheets/base_packaged.css?1587261446" media="screen" rel="stylesheet" type="text/css" />
+
+<!--[if IE]><link href="/stylesheets/ie.css?1587261446" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+
+<script src="/javascripts/jquery-3.3.1.min.js?1587261446" type="text/javascript"></script><script src="/javascripts/plugins/colorpicker.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/autoresize.jquery.min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.bt.min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.colorbox-min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.easing.1.3.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.hotkeys-0.7.9.min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.hoverIntent.minified.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.scrollTo.min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.localScroll.min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.simplyCountable.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery.textarea.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/ui.achtung-min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jquery-ui.min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/jqplot/jquery.jqplot.min.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.barRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.canvasAxisLabelRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.canvasAxisTickRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.canvasTextRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.categoryAxisRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.cursor.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.dateAxisRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.dragable.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.highlighter.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.logAxisRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.ohlcRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.pieRenderer.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.pointLabels.js?1587261446" type="text/javascript"></script>
+<script src="/javascripts/plugins/jqplot/jqplot.trendline.js?1587261446" type="text/javascript"></script>
+
+<!--[if IE]><script src="/javascripts/jqplot/excanvas.js?1587261446" type="text/javascript"></script><![endif]-->
+
+
+<script src='https://www.google.com/jsapi?key=ABQIAAAA_fu--sz6QJQi-i2SHbHg9RQ9aptyBPsWlJ2csJ2DPx65I2maSBTBuSn0gjJ4JK7rexyUwMlo-G8pag' type='text/javascript'></script>
+
+<script src='https://use.typekit.com/onu2kal.js' type='text/javascript'></script>
+<script type='text/javascript'>
+//<![CDATA[
+  try{Typekit.load();}catch(e){}
+//]]>
+</script>
+
+
+
+<script type="text/javascript">
+// Google Analytics
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-12069949-1', 'auto');
+ga('require', 'displayfeatures');
+ga('send', 'pageview');
+
+// Amplitude.com
+(function(h,a){var f=h.amplitude||{};var b=a.createElement("script");b.type="text/javascript";
+b.async=true;b.src="https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-1.2-min.js";
+var g=a.getElementsByTagName("script")[0];g.parentNode.insertBefore(b,g);
+f._q=[];function e(i){f[i]=function(){f._q.push([i].concat(Array.prototype.slice.call(arguments,0)))}}
+var c=["init","logEvent","setUserId","setUserProperties","setVersionName","setDomain","setGlobalUserProperties"];
+for(var d=0;d<c.length;d++){e(c[d])}h.amplitude=f})(window,document);
+
+
+
+  amplitude.init("f9f787068b4237477c6876bc5c3a9160", "527313");
+  var userProperties = {};
+	userProperties.name = "Kai Carver";		
+	userProperties.created_date = "2020-01-19";
+	userProperties.gender = "male";
+	userProperties.patron = "true";
+	userProperties.lifetime_account = "false";
+	userProperties.num_completed_entries = "251";
+	userProperties.monthly_challenger = "false";		
+	amplitude.setUserProperties(userProperties);
+
+
+</script>
+
+<!-- PayPal BEGIN -->
+<script>
+    ;(function(a,t,o,m,s){a[m]=a[m]||[];a[m].push({t:new Date().getTime(),event:'snippetRun'});var f=t.getElementsByTagName(o)[0],e=t.createElement(o),d=m!=='paypalDDL'?'&m='+m:'';e.async=!0;e.src='https://www.paypal.com/tagmanager/pptm.js?id='+s+d;f.parentNode.insertBefore(e,f);})(window,document,'script','paypalDDL','94caddd4-f481-4cd3-8842-5b0c22da53e7');
+</script>
+
+<meta property="fb:admins" content="500528646" />
+<meta name="twitter:site" content="@750words">
+<meta name="google-site-verification" content="iwVf23pf5BTm1-BGLKlYQeJtLUpIqf3HCbQeBXHl5Do" />
+</head>
+
+<body class="bp one-col">
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=201046311268";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<div id="wrapper">
+
+
+<div id="header">
+  <div id="nav">
+    
+      
+    
+    <strong>
+    <div class="sniglet logo"><a href="https://750words.com">750 Words</a></div>
+    <ul id="hover_nav">
+    <li class="top_menu sniglet"><a href="https://750words.com/statistics">TODAY</a>
+        <ul>
+        <li style="border-bottom: 1px solid #000; margin-bottom: 5px;">Is FRIDAY the 2ND</li>
+        <li class="d"><em>Hello</em>, Member Kai Carver.</li>
+        <li><a href="https://750words.com">Write</a> every day</li>
+        <li><a href="https://750words.com/statistics">Today's writers</a></li>
+        <li><a href="https://750words.com/following">People you're following</a></li>
+        <li><a href="https://750words.com/metadata">Your metadata</a></li>
+                  <li class="d" style="border-top:1px solid #000;margin-top:5px;padding-top:5px;">You've written 13 words so far... don't give up!</li>
+        
+        </ul>
+    </li>
+
+    
+
+    <li class="top_menu sniglet"><a href="https://750words.com/statistics/2020/10">THIS MONTH</a>
+
+        <ul style="width:215px;">
+            <li style="border-bottom: 1px solid #000; margin-bottom: 5px;">OCTOBER</li>
+            <li class="d">Find many statistics and tidbits of interesting knowledge.</li>
+            <li><a href="https://750words.com/statistics/2020/10">October's writers</a></li>
+            <li><a href="https://750words.com/one_month/running">October challengers</a></li>
+            <li><a href="https://750words.com/one_month">November challenge signup</a></li>
+        </ul>
+    </li>
+    
+    <li class="top_menu sniglet"><a href="/" onclick="return false;">HELP</a>
+        <ul>
+            
+            <li><a href="https://750words.com/about">About this site</a></li>
+            <li><a href="https://750words.com/faq">FAQ</a></li>
+            <li><a href="https://750words.com/badges">Badges</a></li>
+            <li><a href="https://facebook.com/750words" target="750words">Our Facebook page</a></li>
+            <li><a href="https://twitter.com/750words" target="750words">Our Twitter account</a></li>
+            <li><a href="https://750words.com/help/request_help">Request Help</a></li>
+        </ul>    
+    </li>
+    <li class="top_menu sniglet"><a href="/" onclick="return false;">SETTINGS</a>
+      <ul>
+        <li style="border-bottom: 1px solid #000; margin-bottom: 5px;">Go ahead and TINKER</li>            
+        <li><a href="/account/edit_settings" class="edit_settings" id="aes">Your Info</a></li>
+        <li><a href="/lock/security_lock" class="security_lock" id="asl">Edit Password</a></li>
+        <li><a href="https://750words.com/account/customize">Customize Page</a></li>
+        <li><a href="https://750words.com/entries/search">Search &amp; Export</a></li>
+        <li><a href="https://750words.com/account/vacation">Schedule Time Off</a></li>
+        
+      </ul>        
+    </li>
+    <li class="top_menu sniglet"><a href="https://750words.com/members">5236 MEMBERS</a>
+        <ul>
+        <li><a href="https://750words.com/members">Good People</a></li>
+        <li><a href="https://750words.com/members/note_of_inspiration">Write an inspired note</a></li>
+        </ul>        
+    </li>
+    </ul>
+  </strong>
+  </div>
+  <div style="position:absolute;top:15px;left:750px;font-size:12px;"><a href="https://750words.com/auth/logout" class="subdued">Log out</a></div>
+
+
+</div><!-- header -->
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function(){
+  $('#rev').click(function(e){
+    e.preventDefault();
+    $.ajax({ 
+       type: "GET", 
+       url: $(this).attr('href'), 
+       dataType: 'script',
+       cache: false, 
+       success: function(message) {
+       },
+       error: function(message, ajaxOptions, thrownError) {
+         $.achtung({message: "Error resending your email verification.", 
+                    timeout:5, 
+                    icon: 'ui-icon-alert',
+                    className: 'achtungFail'});
+       }
+    });
+  });
+});
+
+//]]>
+</script>
+
+
+
+
+
+
+
+
+
+<style>
+#autosaving_indication { display: inline-block; width: 22px; height: 20px; }
+.saved { background-image: url("/images/icons/status.png"); background-position: 0px 0px; }
+.not-saved { background-image: none; }
+
+
+
+
+
+
+
+#print-me {float:right;font-size:13px;font-weight:normal;}
+  body.bp table { margin-bottom: 0; }
+  body.bp h1 { margin-top: 0.5em; font-size: 30px; }
+  body.one-col h3 { margin-bottom:0.5em; font-size: 1.2em; }
+
+
+body ul.nav { margin:0; padding:0 0 15px 0;}
+ul.nav li {list-style:none; float:left; margin-right:20px;}
+body.one-col #content { padding-bottom:20px; }
+</style>
+
+<div id="content">
+<div id="bowling-score-tally">
+
+
+
+<h3 id="this_months_score">
+<div style="float:left;">October 2020</div>
+<div style="float:right;">
+  27 day streak!
+
+
+</div>
+<br clear="all" />
+</h3>
+
+
+<table id="months_progress">
+<tr>
+<td><a href="/day/2020-09-01"><<</a></td>
+
+
+  <td>
+          <a href="/day/2020-10-01"><img alt="2-points" height="30" src="/images/icons/2-points.png?1587261446" title="Thursday October 1st:&lt;br /&gt; 839 words" width="20" /></a>
+      
+  </td>
+  <td>
+          <a href="/day/2020-10-02"><img alt="1-point" height="30" src="/images/icons/1-point.png?1587261446" title="Friday October 2nd:&lt;br /&gt; 13 words" width="20" /></a>
+      
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Saturday October 3rd" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Sunday October 4th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Monday October 5th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Tuesday October 6th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Wednesday October 7th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Thursday October 8th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Friday October 9th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Saturday October 10th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Sunday October 11th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Monday October 12th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Tuesday October 13th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Wednesday October 14th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Thursday October 15th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Friday October 16th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Saturday October 17th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Sunday October 18th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Monday October 19th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Tuesday October 20th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Wednesday October 21st" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Thursday October 22nd" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Friday October 23rd" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Saturday October 24th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Sunday October 25th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Monday October 26th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Tuesday October 27th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Wednesday October 28th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Thursday October 29th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Friday October 30th" width="20" />
+
+    
+  </td>
+  <td>
+        <img alt="Future-points" height="30" src="/images/icons/future-points.png?1587261446" title="Saturday October 31st" width="20" />
+
+    
+  </td>
+
+
+
+</tr>
+</table>
+
+</div><!-- bowling-score-tally -->
+<h1 id="date">Friday, October 02, 2020 <a href="#" id="header-controll" class="subdued">[<span>-</span>]</a> <a href="/print/2020-10-02"><img alt="Printer" height="16" src="/images/icons/printer.gif?1587261446" width="20" /></a></h1>
+
+  <div id="entry_form">
+<form action="/autosave" method="post"><div style="margin:0;padding:0;display:inline"><input name="authenticity_token" type="hidden" value="UOiBZiOp/lBrWIJklyckFmr23mgl1hgBWusE4uA9LR8=" /></div>  <input type="hidden" id="changed" name="changed" value="0" />
+    <input type="hidden" id="words_at_last_save" name="words_at_last_save" value="13" />
+    <input type="hidden" id="words_at_last_autosave" name="words_at_last_autosave" value="13" />
+  <input type="hidden" id="country" name="country" value="" />
+  <input type="hidden" id="entry_id" name="entry[id]" value="9833695" />
+  <input type="hidden" id="entry_num_words" name="entry[num_words]" value="13" />
+  <input id="entry_record_version" name="entry[record_version]" type="hidden" value="3" />
+  <textarea cols="40" id="entry_body" name="entry[body]" rows="20">Well hello scarpy!
+
+It's 12:30 am and I'm close to scraping my writing. </textarea>
+</form>
+</div>
+<script type="text/javascript">
+amplitude.logEvent("started writing");
+</script>
+
+
+<div style="height:20px;">&nbsp;</div>
+</div><!-- content -->
+<div id="losing_words"></div>
+<script type="text/javascript" language="javascript">
+
+window.onbeforeunload = function (e) {
+  e = e || window.event;
+  if ($('#changed').val() == 0) {
+    // No change leaving the page is ok.
+    return;
+  }
+  // IE, Firefox prior to v 4.
+  if (e) {
+    e.returnValue = 'Ahoj!';
+  }
+  // Safari
+  return 'Ahoj!';
+};
+
+var check_outbound_links = true;
+function autosave(verify_success, continue_to_url) { 
+  var entry_id  = $('#entry_id').val();
+  var body      = encodeURIComponent($('#entry_body').val()); 
+  var num_words = $('#entry_num_words').val(); 
+  var num_words_at_last_autosave = $('#words_at_last_autosave').val();
+  var new_words = num_words - num_words_at_last_autosave;
+  var changed   = $('#changed').val();
+
+  if (verify_success != 'losing_words_is_okay' && new_words < -30) {
+     $('#losing_words').html("Uh oh!  My records show that your entry used to be longer than it currently is.  It used to be "+num_words_at_last_autosave+" words, but is now "+num_words+" words... therefore losing "+(-new_words)+" words.  To revert, cancel this box and reload this page.");
+      $("#losing_words").dialog({
+           bgiframe: true,
+           resizable: false,
+           height:250,
+           modal: true,
+           overlay: {
+              backgroundColor: '#000',
+              opacity: 0.5
+           },
+           buttons: {
+              'Save anyway': function() {
+                  $(this).dialog('close');
+                  autosave('losing_words_is_okay');
+               },
+               Cancel: function() {
+                   $(this).dialog('close');
+               }
+            }
+      });
+      $("#losing_words").dialog('open');
+
+  } else {
+      if (changed == '1' || verify_success == 'losing_words_is_okay') {
+          $('#save_message').html('Saving');
+          $('#autosaving_indication').removeClass('not-saved').removeClass('saved');
+          var img = document.createElement("IMG");
+          img.src = "/images/dots-white.gif";
+          document.getElementById('autosaving_indication').appendChild(img);
+
+          $.ajax({ 
+              type: "POST", 
+              url: "/autosave", 
+              data: "entry[id]=" + entry_id + "&entry[num_words]=" + num_words + "&entry[body]=" + body + "&v=" + verify_success + "&rv=" + $('#entry_record_version').val(), 
+              dataType: 'script',
+              cache: false, 
+              success: function(message) {
+                  var nv = $('#entry_num_words').val();
+                  var sw = $('#words_at_last_autosave').val();
+                  if((nv-sw)>0) {
+                    $('#changed').val('1');
+                    $('#autosaving_indication').html("").removeClass('saved').addClass('not-saved');
+                  } else {
+                    $('#changed').val('0');
+                  }
+                  if (verify_success == 'ctrls') {
+                      $.achtung({message: "Force-saved it. Continue on!", 
+                                 timeout:5, 
+                                 icon: 'ui-icon-check',
+                                 className: 'achtungSuccess'});
+                  } else if (verify_success == 'losing_words_is_okay') {
+                      $.achtung({message: "Saved it!", 
+                                 timeout:5, 
+                                 icon: 'ui-icon-check',
+                                 className: 'achtungSuccess'});
+                  } else if (continue_to_url) {
+                      window.location = continue_to_url;
+                  }
+              },
+              error: function(message, ajaxOptions, thrownError) {
+                  $('#changed').val('1');
+                  $('#save_message').html("Error saving.");
+                  $.achtung({message: "Error autosaving entry. Make sure your words are saved before continuing.", 
+                             timeout:5, 
+                             icon: 'ui-icon-alert',
+                             className: 'achtungFail'});
+              }
+          });
+      }
+  }
+
+  // To prevent another thread running set timeout only 
+  // when we do not call autosave() from within autosave().
+  var s;
+  if (verify_success != 'losing_words_is_okay') {
+    s = setTimeout(autosave, 35000);
+  }
+  return false;
+};
+
+
+$(document).ready(function(){
+
+    $('#entry_body').simplyCountable({
+        counter: '#counter',
+        hiddenField: '#entry_num_words',
+        countType: 'words',
+        maxCount: 750,
+        strictMax: false,
+        countDirection: 'up',
+        safeClass: 'wordcount_under',
+        overClass: 'wordcount_over',
+        thousandSeparator: ','
+    });
+        
+    $("textarea").tabby();
+    $('#entry_body').autoResize({
+        // On resize:
+        onResize : function() {
+          if ($('#entry_body')[0].selectionStart +10 >= $('#entry_body').val().length) {
+            setTimeout(function(){
+              $.scrollTo('max', {duration: 0});
+            }, 10);
+          }
+        },
+        // After resize:
+        animateCallback : function() {
+        },
+        // Quite slow animation:
+        animateDuration : 0,
+        // More extra space: 
+        extraSpace : 40,
+        limit: false,
+
+        // Limit to how big the text area can get. Effectively no limit.
+        limit : 1000000
+    }).trigger('change');    
+    
+    $('#entry_body').focus();
+    $('#entry_body').val($('#entry_body').val()+"\n");
+    $('#entry_body').val($('#entry_body').val().substr(0,$('#entry_body').val().length - 1));
+    $.scrollTo('#footer', 400, {});
+    $('#entry_body').keyup(needsSaving);
+    
+    function needsSaving() {
+        var changed = $('#changed').val();
+        if (changed == '0') {
+            $('#changed').val('1');
+            $('#autosaving_indication').html("").removeClass('saved').addClass('not-saved');
+        }
+        if ($('#seconds_left').length > 0) {
+            $('#seconds_left').val(600);
+        }
+    }
+        
+    autosave();
+    
+    $(document).bind('keydown', function(event) {
+        if ((event.which == 115 || event.which == 83) && (event.ctrlKey || event.metaKey)) {
+                      $('#changed').val('1');
+            autosave('ctrls');
+            event.stopPropagation();  
+            event.preventDefault();
+            return false;
+          
+        } else {
+          bindOutboundLinks();
+        }
+        return true;
+    });
+
+//   Redundant. See $(document).bind('keydown'..
+//    $(window).keypress(function(event) {
+//       bindOutboundLinks();
+//       return true;
+//    });
+    
+    function bindOutboundLinks() {
+        $('a').click(function(event) {
+            // Do not autosave when making xhr request.
+            if ($(this).attr('id') == 'aes' || $(this).attr('id') == 'asl' || $(this).attr('id') == 'header-controll') {
+              return true;
+            };
+
+            var c = $('#changed').val();
+            var b = $('#entry_body').val();
+            if (check_outbound_links != false && c == '1' && b.length > 0) {
+                check_outbound_links = false;
+                $.achtung({message: "Saving your entry before you go.",
+                           timeout:5,
+                           icon: 'ui-icon-check',
+                           className: 'achtungSuccess'});
+
+                autosave('go_to_stats', $(this).attr('href'));
+                event.preventDefault();
+                return false;
+            }
+        });
+    }
+
+    checkPace();
+    function checkPace() {
+        var entry_id  = $('#entry_id').val();
+        var num_words = $('#entry_num_words').val().replace(/,/g,""); 
+        var words_at_last_save = $('#words_at_last_save').val(); 
+
+        if (num_words != words_at_last_save) {
+            var new_words = num_words - words_at_last_save;
+            $.ajax({ 
+                type: "POST", 
+                url: "/pace", 
+                data: "entry[id]=" + entry_id + "&new_words=" + new_words + "&total_words=" + num_words, 
+                cache: false, 
+                success: function(message) {},
+                error: function(message) {
+                    $('#words_at_last_save').val(words_at_last_save);
+                }
+            });
+        }
+        var t = setTimeout(checkPace, 60000); 
+    }
+
+    if (google.loader.ClientLocation && $('#country').val() == '') {
+      var loc = google.loader.ClientLocation;
+      $.ajax({
+           type: "POST",
+            url: "/locate",
+           data: "country=" + encodeURIComponent(loc.address.country) + "&region=" + encodeURIComponent(loc.address.region) + "&city=" + encodeURIComponent(loc.address.city) + "&lat=" + loc.latitude + "&lng=" +loc.longitude,
+          cache: false,
+        success: function(message) {
+             $('#country').val(loc.address.country);
+         },
+         error: function(message) {}
+      });
+    }
+
+    $('#header-controll').click(function(e) {
+      var hc = this;
+
+      e.preventDefault();
+      $('#header').toggle('slow');
+      $('#bowling-score-tally').toggle('slow', function() {
+        if ($(this).css('display') === 'none') {
+           $('span', hc).text('+');
+        } else {
+           $('span', hc).text('-');    
+        }
+      });
+    });
+
+
+  $('#months_progress img').bt({
+     fill: '#F4F4F4',
+     strokeStyle: '#333333', 
+     spikeLength: 5,
+     width: 250,
+     spikeGirth: 10,
+     overlap: 0,
+     centerPointY: 1,
+     cornerRadius: 0, 
+     cssStyles: {
+       fontFamily: '"Lucida Grande",Helvetica,Arial,Verdana,sans-serif', 
+       fontSize: '12px',
+       padding: '15px 0 15px 30px'
+     },
+     shadow: true,
+     shadowColor: 'rgba(0,0,0,.5)',
+     shadowBlur: 8,
+     shadowOffsetX: 4,
+     shadowOffsetY: 4
+  });
+});
+</script>
+
+
+  <input id="isUnlockDisplayed" name="isUnlockDisplayed" type="hidden" value="0" />
+  <input id="seconds_left" name="seconds_left" type="hidden" />
+  <input id="security_lock" name="security_lock" type="hidden" value="false" />
+
+  <script type="text/javascript">
+//<![CDATA[
+    function checkSecondsLeft() {
+      if($('#security_lock').val() == 'false' || $('#isUnlockDisplayed').val() == 1) {
+        return;
+      }
+
+      // Decriment seconds by 10.
+      var n = $('#seconds_left').val();
+      if (n > 0) {
+        n = n - 10;
+        $('#seconds_left').val(n);
+      }
+
+      // Test for lock.
+      if (n <= 0) {
+        $('#isUnlockDisplayed').val(1);
+          $.fn.colorbox({href:"/lock/unlock_lock",
+               overlayClose: false,
+                  scrolling: false,
+                     escKey: false,
+                    opacity: 1,
+                 onComplete: function(){
+                   $('#person_password').focus();
+                 }
+        });
+      }
+    }
+
+    function Interval(fn, time) {
+      var timer = false;
+      this.start = function () {
+        if (!this.isRunning()) {
+          timer = setInterval(fn, time);
+        }
+      };
+      this.stop = function () {
+        clearInterval(timer);
+        timer = false;
+      };
+      this.isRunning = function () {
+        return timer !== false;
+      };
+    }
+
+    var checkLockIterval = new Interval(checkSecondsLeft, 10*1000);
+
+    
+//]]>
+</script><div id="push"></div>
+</div><!-- wrapper -->
+
+  <div id="footer">
+  
+    <div id="entry_body_counter" class="rounded" style="width:185px;">
+    <span id="save_message">Saved 13 at 12:37am</span> <span id="autosaving_indication" class="saved"></span>
+    <div id="counter">
+    
+      
+    
+    </div>
+    </div>
+      <div style="font-weight: bold; line-height: 45px; padding-top: 20px;">
+    
+      <span class="bree logo"><a href="https://750words.com">750 Words</a></span>
+      <span style="font-size: 12px; font-weight: normal;">&ndash; Private, unfiltered, spontaneous, daily</span>
+      
+
+    
+    </div>
+  
+  </div><!-- footer -->
+
+
+<script src="//platform.twitter.com/oct.js" type="text/javascript"></script>
+
+<!-- site visit -->
+<script type="text/javascript">
+twttr.conversion.trackPid('l5gcd');</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l5gcd&p_id=Twitter" />
+<img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l5gcd&p_id=Twitter" /></noscript>
+
+<script type="text/javascript" language="javascript">
+$(document).ready(function(){
+  $('li.top_menu').hover(
+      function() { $('ul', this).css('display', 'block'); },
+  	function() { $('ul', this).css('display', 'none'); });
+  $('a.security_lock').colorbox({
+      scrolling: false,
+      onComplete: function() {
+       $('#person_current_password').focus();
+      }
+  });
+
+  $('a.edit_settings').colorbox({scrolling: false});
+  $('a.create_group').colorbox({scrolling: false});
+
+  
+
+  
+    $.achtung({message: "Welcome back, Kai Carver!", 
+               timeout:10, 
+               icon: 'ui-icon-check',
+               className: 'achtungSuccess'});
+    
+  
+
+  
+
+  
+
+  $('.beauty_title').bt({
+    fill: 'rgba(250, 250, 230, .9)',
+    strokeStyle: '#666666', 
+    width: 150,
+    spikeLength: 10,
+    spikeGirth: 20,
+    overlap: 0,
+    centerPointY: 1,
+    cornerRadius: 0, 
+    cssStyles: {
+       fontFamily: '"Lucida Grande",Helvetica,Arial,Verdana,sans-serif', 
+       fontSize: '12px',
+       padding: '10px 14px'
+     },
+    shadow: true,
+    shadowColor: 'rgba(0,0,0,.5)',
+    shadowBlur: 8,
+    shadowOffsetX: 4,
+    shadowOffsetY: 4,
+    positions: ['right','bottom']
+  });  
+});
+</script>
+
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+      ga('send', 'event', 'account', 'logged_in');
+      amplitude.logEvent("logged in");
+
+      var fb_param = {};
+      fb_param.pixel_id = '6015293312506';
+      fb_param.value = '0.01';
+      fb_param.currency = 'USD';
+      (function(){
+      var fpw = document.createElement('script');
+      fpw.async = true;
+      fpw.src = '//connect.facebook.net/en_US/fp.js';
+      var ref = document.getElementsByTagName('script')[0];
+      ref.parentNode.insertBefore(fpw, ref);
+      })();
+    });
+  </script>
+  <noscript><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/offsite_event.php?id=6015293312506&amp;value=0.01&amp;currency=USD" /></noscript>
+
+  <script type="text/javascript">
+  twttr.conversion.trackPid('l5gcf');</script>
+  <noscript>
+  <img height="1" width="1" style="display:none;" alt="" src="https://analytics.twitter.com/i/adsct?txn_id=l5gcf&p_id=Twitter" />
+  <img height="1" width="1" style="display:none;" alt="" src="//t.co/i/adsct?txn_id=l5gcf&p_id=Twitter" /></noscript>
+
+
+
+
+
+</body>
+</html>
