@@ -1,5 +1,6 @@
 import scrapy
 from scrapy.http import FormRequest
+import logging
 
 
 class SevenfiftySpider(scrapy.Spider):
@@ -18,8 +19,9 @@ class SevenfiftySpider(scrapy.Spider):
                                         callback=self.parse_after_login)
 
     def parse_after_login(self, response):
-        print(response.xpath('//*[@id="entry_body"]/text()').get())
-        filename = 'sevenfifty.html'
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-        self.log('Saved file %s' % filename)
+        words = response.xpath('//*[@id="entry_body"]/text()').get()
+        print(words)
+        filename = '/home/kai/blog/sevenfifty.html'
+        with open(filename, 'w') as f:
+            f.write(words)
+        self.logger.warning('Saved file %s' % filename)

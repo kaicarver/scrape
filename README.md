@@ -34,3 +34,7 @@ So we have two working examples:
 And now a working program to get my writing of the day:
 
     scrapy crawl sevenfifty -s LOG_ENABLED=0
+
+or better yet, to catch errors:
+
+    scrapy crawl sevenfifty -s LOG_LEVEL=WARNING > words.txt
