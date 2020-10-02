@@ -2,6 +2,7 @@ import scrapy
 from scrapy.http import FormRequest
 import logging
 from datetime import datetime
+import credentials
 
 
 class SevenfiftySpider(scrapy.Spider):
@@ -16,8 +17,8 @@ class SevenfiftySpider(scrapy.Spider):
         yield FormRequest.from_response(response,
                                         formdata={
                                             'authenticity_token': authenticity_token,
-                                            'person[email_address]': 'kaicarver@gmail.com',
-                                            'person[password]': 'kaS369CLVDIxQ'},
+                                            'person[email_address]': credentials.sevenfifty['user'],
+                                            'person[password]': credentials.sevenfifty['password']},
                                         callback=self.parse_after_login)
 
     def parse_after_login(self, response):
