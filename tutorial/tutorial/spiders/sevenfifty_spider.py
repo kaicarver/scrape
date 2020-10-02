@@ -1,6 +1,7 @@
 import scrapy
 from scrapy.http import FormRequest
 import logging
+from datetime import datetime
 
 
 class SevenfiftySpider(scrapy.Spider):
@@ -21,7 +22,7 @@ class SevenfiftySpider(scrapy.Spider):
     def parse_after_login(self, response):
         words = response.xpath('//*[@id="entry_body"]/text()').get()
         print(words)
-        filename = '/home/kai/blog/sevenfifty.html'
+        filename = '/home/kai/blog/days/' + datetime.today().strftime('%Y-%m-%d') + '.txt'
         with open(filename, 'w') as f:
             f.write(words)
         self.logger.warning('Saved file %s' % filename)
