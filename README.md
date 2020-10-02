@@ -30,3 +30,7 @@ So we have two working examples:
 
     scrapy crawl quotes
     scrapy crawl login
+
+And now a working program to get my writing of the day:
+
+    scrapy crawl sevenfifty -s LOG_ENABLED=0

@@ -18,8 +18,6 @@ class SevenfiftySpider(scrapy.Spider):
                                         callback=self.parse_after_login)
 
     def parse_after_login(self, response):
-        print("logged in!")
-        #print(response.body)
         print(response.xpath('//*[@id="entry_body"]/text()').get())
         filename = 'sevenfifty.html'
         with open(filename, 'wb') as f:
