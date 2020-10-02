@@ -38,3 +38,7 @@ And now a working program to get my writing of the day:
 or better yet, to catch errors:
 
     scrapy crawl sevenfifty -s LOG_LEVEL=WARNING > words.txt
+
+and better yet, a way to run the spider from anywhere:
+
+    scrapy runspider ~/scrape/tutorial/tutorial/spiders/sevenfifty_spider.py -s LOG_LEVEL=WARNING
