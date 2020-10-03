@@ -49,3 +49,9 @@ That's OK, I can use `ROBOTS_OBEY=False`. like so:
     scrapy runspider ~/scrape/tutorial/tutorial/spiders/strava_spider.py -s ROBOTSTXT_OBEY=False
 
 I have other problems with Strava, but that takes care of `robots.txt` exclusion.
+
+## scraping for fast.ai
+
+I could probably use scrapy to get a bunch of images from a Bing or Google search as required by fast.ai, but here's a shortcut
+
+[How to scrape Google for Images to train your Machine Learning classifiers on](https://medium.com/@intprogrammer/how-to-scrape-google-for-images-to-train-your-machine-learning-classifiers-on-565076972ce)
