@@ -42,3 +42,10 @@ or better yet, to catch errors:
 and better yet, a way to run the spider from anywhere:
 
     scrapy runspider ~/scrape/tutorial/tutorial/spiders/sevenfifty_spider.py -s LOG_LEVEL=WARNING
+
+Now I've run into a problem for Strava, the `robots.txt` file disallows visiting the dashboard, and nearly all pages on the site.
+That's OK, I can use `ROBOTS_OBEY=False`. like so:
+
+    scrapy runspider ~/scrape/tutorial/tutorial/spiders/strava_spider.py -s ROBOTSTXT_OBEY=False
+
+I have other problems with Strava, but that takes care of `robots.txt` exclusion.
