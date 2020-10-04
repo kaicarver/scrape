@@ -63,7 +63,7 @@ urls = Array.from(document.querySelectorAll('.rg_di .rg_meta')).map(el=>JSON.par
 window.open('data:text/csv;charset=utf-8,' + escape(urls.join('\n')));
 ```
 
-But what is it trying to do?
+But what is it trying to do? Give a man a scrape, he'll scrape for a day. But I wish to be taught how to scrape...
 
 This other page gives the same code, with no more explanation of what we are trying to do:
 
@@ -79,9 +79,11 @@ Anyway, at least in that last article I see an image of what the resulting CSV i
 
 I wonder if some sites may prevent downloading images directly, if you are not coming from the original artcile... Well I'll deal with that if it comes to it. The search does give us that info too, so it probably wouldn't be too hard to pretend like we come from the article...
 
-Google has changed (obfuscated?) something since that bit of code was excerpted.
+Google has changed (obfuscated?) something since that bit of code was excerpted. If we check out one of the results returned by this kind of image search:
 
 <https://www.google.com/search?q=grizzly+bear&tbm=isch>
+
+we see the result is an `<a>` tag containing a `<div>` containg an image thumbnail:
 
 ```html
 <a class="wXeWr islib nfEiy mM5pbd" jsname="sTFXNd" jsaction="click:J9iaEb;" data-nav="1" tabindex="0" style="height: 180px;" href="/imgres?imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fa%2Fa9%2FGrizzlyBearJeanBeaufort.jpg&amp;imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGrizzly_bear&amp;tbnid=wOKSLxVmunP82M&amp;vet=12ahUKEwif78fQjJrsAhVQSxoKHR82CGoQMygAegUIARDQAQ..i&amp;docid=OAt6mxS_RUoSZM&amp;w=1920&amp;h=1381&amp;q=grizzly%20bear&amp;ved=2ahUKEwif78fQjJrsAhVQSxoKHR82CGoQMygAegUIARDQAQ" data-navigation="server">
@@ -92,18 +94,18 @@ Google has changed (obfuscated?) something since that bit of code was excerpted.
 </a>
 ```
 
-So somewhere in that complicated `href` attribute:
+It looks like somewhere in the link, the complicated `href` attribute of the `<a>`:
 
-```html
+<pre>
 /imgres?
 imgurl=
-https%3A%2F%2Fi.guim.co.uk%2Fimg%2Fmedia%2F9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999%2F0_55_3500_2100%2Fmaster%2F3500.jpg%3Fwidth%3D1200%26height%3D900%26quality%3D85%26auto%3Dformat%26fit%3Dcrop%26s%3D471fd2c6885b8679de17245c7ed6238f
+<b>https%3A%2F%2Fi.guim.co.uk%2Fimg%2Fmedia%2F9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999%2F0_55_3500_2100%2Fmaster%2F3500.jpg%3Fwidth%3D1200%26height%3D900%26quality%3D85%26auto%3Dformat%26fit%3Dcrop%26s%3D471fd2c6885b8679de17245c7ed6238f</b>
 &imgrefurl=
 https%3A%2F%2Fwww.theguardian.com%2Fworld%2F2017%2Fjun%2F22%2Fyellowstone-grizzly-bears-endagered-species-protections-lifted&tbnid=JWFktgKEdWk3OM&vet=12ahUKEwiOwpiUnJnsAhUVgHMKHUfRDfYQMygCegUIARDRAQ..i
 &docid=
 _tfcMJ_JE6SviM&w=1200&h=900&q=grizzly%20bear
 &ved=2ahUKEwiOwpiUnJnsAhUVgHMKHUfRDfYQMygCegUIARDRAQ
-```
+</pre>
 
 we should be something like this image, which appears in the linked article:
 
@@ -113,25 +115,48 @@ https://i.guim.co.uk/img/media/9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999/0_55_350
 
 and indeed it looks like it's there, in the URL parameter `imgurl`:
 
-```html
-https%3A%2F%2Fi.guim.co.uk%2Fimg%2Fmedia%2F9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999%2F0_55_3500_2100%2Fmaster%2F3500.jpg%3Fwidth%3D1200%26height%3D900%26quality%3D85%26auto%3Dformat%26fit%3Dcrop%26s%3D471fd2c6885b8679de17245c7ed6238f
-
-```
+<pre>
+<b>https%3A%2F%2Fi.guim.co.uk%2Fimg%2Fmedia%2F9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999%2F0_55_3500_2100%2Fmaster%2F3500.jpg%3Fwidth%3D1200%26height%3D900%26quality%3D85%26auto%3Dformat%26fit%3Dcrop%26s%3D471fd2c6885b8679de17245c7ed6238f</b>
+</pre>
 
 It just needs to be URL decoded. Enter `decodeURIComponent()` which gives us:
 
-```html
+<pre>
+<b>
 https://i.guim.co.uk/img/media/9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999/0_55_3500_2100/master/3500.jpg?width=1200&height=900&quality=85&auto=format&fit=crop&s=471fd2c6885b8679de17245c7ed6238f
-```
+</b>
+</pre>
 
-seems close enough.
+Hey, that looks like an image URL! Close enough to the one we can see in the article.
 
-Now all we need to do is produce the equivalent piece of code, and we can follow all those helpful articles...
+Now that we know what we're looking for, all we need to do is produce the equivalent piece of code, that we can hopefully just plug in to all those helpful articles, and we'll be all set.
 
-Let's go bag to the first line of that magical command that doesn't work anymore:
+Let's go back to the first line of that magical command that doesn't work anymore and understand what it does so we can fix it:
 
 ```javascript
-urls = Array.from(document.querySelectorAll('.rg_di .rg_meta')).map(el=>JSON.parse(el.textContent).ou);
+urls = Array.from(document.querySelectorAll('.rg_di .rg_meta'))
+  .map(el => JSON.parse(el.textContent).ou);
 ```
 
-I'll guess it's trying to make a list of URLs, which Google in its wisdom now stores somewhere else.
+I'll guess it's trying to make a list of URLs, which Google in its wisdom now stores somewhere slightly different.
+
+More specifically, `querySelectorAll()` is getting all the document elements of class `rg_di` and `rg_meta`, putting them in an `Array`, then via `map()`, for each of these elements, it's... parsing the JSON content of the tag, which apparently produces an object whose member `ou` (aha, an abbreviation for "original url") contains a URL, each of which is then stored in the `urls` array.
+
+OK, whatever, the HTML code is different now, all we know is we want to produce an array of URL strings. The tags now have different classes, and the URL has to be dug out of part of a long string and translated.
+
+Let's try this:
+
+```javascript
+urls = Array.from(document.querySelectorAll('.wXeWr'))
+  .map(el => el.href);
+```
+
+It looks like it will work and... Woops!
+
+```javascript
+(48) ["https://www.google.com/imgres?imgurl=https%3A%2F%2…d=2ahUKEwif78fQjJrsAhVQSxoKHR82CGoQMygAegUIARDQAQ", "https://www.google.com/imgres?imgurl=https%3A%2F%2…d=2ahUKEwif78fQjJrsAhVQSxoKHR82CGoQMygBegUIARDSAQ", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
+```
+
+It looks like it doesn't actually fill in the `href` attribute unless you actually interact with the image thumbnail. Tricky, tricky, Google...
+
+One solution would be to actually click on every thumbnail... Will have to think about this some more...
