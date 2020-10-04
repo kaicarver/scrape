@@ -74,9 +74,20 @@ I wonder if some sites may prevent downloading images directly, if you are not c
 
 Google has changed (obfuscated?) something since that bit of code was excerpted.
 
-So somewhere in here:
+<https://www.google.com/search?q=grizzly+bear&tbm=isch>
 
+```html
+<a class="wXeWr islib nfEiy mM5pbd" jsname="sTFXNd" jsaction="click:J9iaEb;" data-nav="1" tabindex="0" style="height: 180px;" href="/imgres?imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fa%2Fa9%2FGrizzlyBearJeanBeaufort.jpg&amp;imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FGrizzly_bear&amp;tbnid=wOKSLxVmunP82M&amp;vet=12ahUKEwif78fQjJrsAhVQSxoKHR82CGoQMygAegUIARDQAQ..i&amp;docid=OAt6mxS_RUoSZM&amp;w=1920&amp;h=1381&amp;q=grizzly%20bear&amp;ved=2ahUKEwif78fQjJrsAhVQSxoKHR82CGoQMygAegUIARDQAQ" data-navigation="server">
+  <div class="bRMDJf islir" jsname="DeysSe" style="height: 181px; margin-left: -14px; margin-right: -29px;" jsaction="mousedown:npT2md; touchstart:npT2md;">
+    <img class="rg_i Q4LuWd" src="data:image/jpeg;base64,/9j/...H1/TBP3v/AFDhZJDxkz//2Q==" data-deferred="1" jsname="Q4LuWd" width="251" height="181" alt="Grizzly bear - Wikipedia" data-iml="720.0449999945704" data-atf="true">
+  </div>
+  <div class="c7cjWc"></div>
+</a>
 ```
+
+So somewhere in that complicate `href` attribute:
+
+```html
 /imgres?
 imgurl=
 https%3A%2F%2Fi.guim.co.uk%2Fimg%2Fmedia%2F9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999%2F0_55_3500_2100%2Fmaster%2F3500.jpg%3Fwidth%3D1200%26height%3D900%26quality%3D85%26auto%3Dformat%26fit%3Dcrop%26s%3D471fd2c6885b8679de17245c7ed6238f
@@ -87,14 +98,13 @@ _tfcMJ_JE6SviM&w=1200&h=900&q=grizzly%20bear
 &ved=2ahUKEwiOwpiUnJnsAhUVgHMKHUfRDfYQMygCegUIARDRAQ
 ```
 
-should be something like this image, which appears in the linked article:
+we should be something like this image, which appears in the linked article:
 
 ```
 https://i.guim.co.uk/img/media/9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999/0_55_3500_2100/master/3500.jpg?width=620&quality=85&auto=format&fit=max&s=7f39252becb078b8494b056b611bb38e
 ```
 
 and indeed it looks like it's there, in the URL parameter `imgurl`:
-
 
 ```
 https%3A%2F%2Fi.guim.co.uk%2Fimg%2Fmedia%2F9b7827c38c5ab2dd2fc07d8b5b744d3d246c8999%2F0_55_3500_2100%2Fmaster%2F3500.jpg%3Fwidth%3D1200%26height%3D900%26quality%3D85%26auto%3Dformat%26fit%3Dcrop%26s%3D471fd2c6885b8679de17245c7ed6238f
@@ -111,4 +121,4 @@ seems close enough.
 
 Now all we need to do is produce the equivalent piece of code, and we can follow all those helpful articles...
 
-Let's l;ook into that tomorrow!
+Let's look into that tomorrow!
