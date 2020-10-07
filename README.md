@@ -159,4 +159,36 @@ It looks like it will work and... Woops!
 
 It looks like it doesn't actually fill in the `href` attribute unless you actually interact with the image thumbnail. Tricky, tricky, Google...
 
-One solution would be to actually click on every thumbnail... Will have to think about this some more...
+One solution would be to actually click on every thumbnail... I actually tried to do that in an automated way, and it didn't work. Google, you win, I give up now, before attempting to write my own [Selenium](https://www.selenium.dev/)...
+
+How about trying the same thing with Bing image search? That was the original goal, right, to get Bing images? I can't do it via the authorized Bing API because it seems I need to pay to get a key, perhaps because I already made use of a free account in the past, dunno...
+
+So to recap, the Google image search I was unable to hack 
+
+<https://www.google.com/search?q=grizzly+bear&tbm=isch>
+
+has this Bing equivalent search:
+
+<https://www.bing.com/images/search?q=grizzly+bear>
+
+Let's go!
+
+And by the way, if I fail with Bing, I can also try my own personal favorite search tool, Duckduckgo, or Baidu, or Yandex, etc.
+
+<https://duckduckgo.com/?q=grizzly+bear&iax=images&ia=images>
+
+<https://image.baidu.com/search/index?tn=baiduimage&word=grizzly+bear>
+
+<https://yandex.com/images/search?text=grizzly%20bear>
+
+fast.ai already recommends to search for things in other languages, for a variety of results, so why not other search engines too. But let's not go too far down that rabbit hole for now, let's try if Bing is nicer than Google for my modest hacking attempt.
+
+And really, scraping is an interesting endeavor. You feel a bit like a criminal... It's like Ocean's 11! Will the hero be able to walk away scott-free with a big bag of images? Oh my. I promise, I am not a criminal, and what I want to do is not a bad thing. But Google & co have the perfect right to try to stop me, because I'm sure there are plenty of abusers... Just not me!
+
+So...
+
+<https://www.bing.com/images/search?q=grizzly+bear>
+
+Inspect...
+
+Hmm, looks like the actual image URL doesn't appear unless you click on the image thumbnail... Grr...
