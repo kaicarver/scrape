@@ -191,4 +191,59 @@ So...
 
 Inspect...
 
-Hmm, looks like the actual image URL doesn't appear unless you click on the image thumbnail... Grr...
+Hmm, looks like on Bing, the actual image URL doesn't appear unless you click on the image thumbnail... Grr... Woops! No, that was duckduckgo that I was looking at...
+
+Bing looks more promising. Using Inspect, I see an `<a>` element of class `iusc`  that contains a promising URL buried in some JSON stored in a custom attribute called `m` (which apparently stands for "media"):
+
+```html
+<a class="iusc" style="height:180px;width:269px" m="{"cid":"Ebdz7mQw","purl":"https://someinterestingfacts.net/10-facts-grizzly-bear/","murl":"https://someinterestingfacts.net/wp-content/uploads/2016/07/Canadian-Grizzly-Bear.jpg","turl":"https://tse1.mm.bing.net/th?id=OIP.Ebdz7mQwVEny-uVn3MWrOwHaE8&pid=15.1","md5":"11b773ee64305449f2fae567dcc5ab3b","shkey":"Y3pyj5i+UrMMPbfCwtWgEQ+gzRRt1j12rjFGyUX4VSc=","t":"10 Facts About Grizzly Bears - Some Interesting Facts","mid":"CB1AF235DF865E3CE2C61B8E5D897386CEC2541C","desc":"grizzly bear facts bears canadian grolar interesting"}" onclick="sj_evt.fire('IFrame.Navigate', this.href); return false;" href="/images/search?view=detailV2&ccid=Ebdz7mQw&id=CB1AF235DF865E3CE2C61B8E5D897386CEC2541C&thid=OIP.Ebdz7mQwVEny-uVn3MWrOwHaE8&mediaurl=https%3a%2f%2fsomeinterestingfacts.net%2fwp-content%2fuploads%2f2016%2f07%2fCanadian-Grizzly-Bear.jpg&exph=1068&expw=1600&q=grizzly+bear&simid=608025979016708716&ck=87468A39749C9C4C3F21A32C7BF7D149&selectedIndex=0&FORM=IRPRST" h="ID=images,5189.1" data-focevt="1">
+  <div class="img_cont hoff">
+    <img class="mimg" style="color: rgb(140, 98, 63);" height="180" width="269" src="https://th.bing.com/th/id/OIP.Ebdz7mQwVEny-uVn3MWrOwHaE8?w=269&h=180&c=7&o=5&dpr=1.5&pid=1.7" alt="Image result for grizzly bear" data-thhnrepbd="1" data-bm="176">
+  </div>
+</a>
+```
+
+Looking closer at that JSON...
+
+```json
+{"cid":"Ebdz7mQw","purl":"https://someinterestingfacts.net/10-facts-grizzly-bear/","murl":"https://someinterestingfacts.net/wp-content/uploads/2016/07/Canadian-Grizzly-Bear.jpg","turl":"https://tse1.mm.bing.net/th?id=OIP.Ebdz7mQwVEny-uVn3MWrOwHaE8&pid=15.1","md5":"11b773ee64305449f2fae567dcc5ab3b","shkey":"Y3pyj5i+UrMMPbfCwtWgEQ+gzRRt1j12rjFGyUX4VSc=","t":"10 Facts About Grizzly Bears - Some Interesting Facts","mid":"CB1AF235DF865E3CE2C61B8E5D897386CEC2541C","desc":"grizzly bear facts bears canadian grolar interesting"}
+```
+
+we see a `murl` property which has what we want!
+
+<https://someinterestingfacts.net/wp-content/uploads/2016/07/Canadian-Grizzly-Bear.jpg>
+
+OK, so let's try to catch them all. To get all the elements of this type:
+
+```javascript
+all = document.querySelectorAll('.iusc')
+
+<- NodeList(35) [a.iusc, a.iusc, a.iusc, a.iusc, ...]
+```
+
+That gives us a `NodeList` of 35 elements. Let's look at what's in the `m` attribute of the first element, `all[0]`, and lo, we have the JSON string:
+
+```javascript
+el = all[0]
+el.attributes.m.value
+
+<- {"cid":"Ebdz7mQw","purl":"https://someinterestingfacts.net/10-facts-grizzly-bear/","murl":"https://someinterestingfacts.net/wp-content/uploads/2016/07/Canadian-Grizzly-Bear.jpg","turl":"https://tse1.mm.bing.net/th?id=OIP.Ebdz7mQwVEny-uVn3MWrOwHaE8&pid=15.1","md5":"11b773ee64305449f2fae567dcc5ab3b","shkey":"Y3pyj5i+UrMMPbfCwtWgEQ+gzRRt1j12rjFGyUX4VSc=","t":"10 Facts About Grizzly Bears - Some Interesting Facts","mid":"CB1AF235DF865E3CE2C61B8E5D897386CEC2541C","desc":"grizzly bear facts bears canadian grolar interesting"}
+```
+
+We can get the part we want out of the JSON string using the same method used by the original Google-scraping script that doesn't work anymore:
+
+```javascript
+JSON.parse(el.attributes.m.value).murl
+
+<- "https://someinterestingfacts.net/wp-content/uploads/2016/07/Canadian-Grizzly-Bear.jpg"
+```
+
+Hooray, that's one URL. Now let's try to get them all at once. We get all the elements we are interested in, put them in an `Array`, use
+
+```javascript
+urls = Array.from(document.querySelectorAll(".iusc")).map(el => JSON.parse(el.attributes.m.value).murl)
+
+<- (35) ["https://someinterestingfacts.net/wp-content/uploads/2016/07/Canadian-Grizzly-Bear.jpg", "https://images.gearjunkie.com/uploads/2015/07/Grizzly-Bear.jpg", "https://www.pbs.org/wnet/nature/files/2018/07/Bear133-1280x720.jpg", "https://upload.wikimedia.org/wikipedia/commons/e/e2/Grizzlybear55.jpg", ... ]
+```
+
+Hooray!
