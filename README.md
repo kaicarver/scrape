@@ -238,7 +238,9 @@ JSON.parse(el.attributes.m.value).murl
 <- "https://someinterestingfacts.net/wp-content/uploads/2016/07/Canadian-Grizzly-Bear.jpg"
 ```
 
-Hooray, that's one URL. Now let's try to get them all at once. We get all the elements we are interested in, put them in an `Array`, use
+Hooray, that's one URL. 
+
+Now let's try to get them all at once. We get the elements we are interested in with `querySelectorAll()`, put them in an `Array`, use `map()` to apply `JSON.parse()` to each `m` element attribute, and get the `murl` attribute from that... All in one line of JavaScript in the console:
 
 ```javascript
 urls = Array.from(document.querySelectorAll(".iusc")).map(el => JSON.parse(el.attributes.m.value).murl)
@@ -247,3 +249,14 @@ urls = Array.from(document.querySelectorAll(".iusc")).map(el => JSON.parse(el.at
 ```
 
 Hooray!
+
+Now all we need to do is add the hack to download the list into a CSV text file (really just a text file listing URLs, one per line):
+
+```javascript
+urls = Array.from(document.querySelectorAll(".iusc")).map(el => JSON.parse(el.attributes.m.value).murl);
+window.open('data:text/csv;charset=utf-8,' + escape(urls.join('\n')));
+```
+
+Note: this is where turning off any ad-blocker software in the browser is important. ublock prevented me from downloading or downloaded an empty file until I disabled it.
+
+Next I should make sure that this works if I scroll down a bit to collect more than the default 35 images.
