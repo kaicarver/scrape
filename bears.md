@@ -5,18 +5,20 @@ For the "bear detector" of [Chapter 2](https://github.com/fastai/fastbook/blob/m
 I had problems using the Bing image search API, the currently recommended method for fast.ai.
 I can't use the authorized Bing API because it seems I need to pay to get a key, perhaps because I already made use of a free account in the past, dunno...
 
-So I thought of using something like [scrapy](https://scrapy.org/) to get the required bunch of images from a Bing or Google search, but searching around I found an attractive shortcut:
+## Trying to scrape Google image search
+
+So I thought of using something like [scrapy](https://scrapy.org/) to get the required bunch of images from a Bing or Google search, but searching around I found an attractive method:
 
 [How to scrape Google for Images to train your Machine Learning classifiers on](https://medium.com/@intprogrammer/how-to-scrape-google-for-images-to-train-your-machine-learning-classifiers-on-565076972ce)
 
-... except it's of course out-of-date. And it doesn't tell you what it's trying to do: it just applies a recipe, asking us to "invoke the following command":
+... except it's of course out-of-date. And the method doesn't tell you what it's trying to do: it just applies a recipe, asking us to "invoke the following command":
 
 ```javascript
 urls = Array.from(document.querySelectorAll('.rg_di .rg_meta')).map(el=>JSON.parse(el.textContent).ou);
 window.open('data:text/csv;charset=utf-8,' + escape(urls.join('\n')));
 ```
 
-But what is it trying to do? Give a man a scrape, he'll scrape for a day. But I wish to be taught how to scrape...
+But what is it trying to do? Give a man a scrape, he'll scrape for a day. But I'd like to learn how to scrape...
 
 This other page gives the same code, with no more explanation of what we are trying to do:
 
@@ -26,7 +28,7 @@ So does this one:
 
 <https://towardsdatascience.com/fantastic-and-straightforward-image-classification-with-fastai-library-for-pytorch-30c3380ac284>
 
-Wow, that's a popular technique... No wonder Jeremy now suggests using the Bing API and suggests that non-API techniques would be against the terms of service of the search engine, though techniques can be found online...
+Wow, that's a popular technique... No wonder Jeremy now suggests using the Bing API. He says in his lecture that non-API techniques would be against the terms of service of the search engine, but he does mention techniques can readily be found online...
 
 Anyway, at least in that last article I see an image of what the resulting CSV is supposed to look like... OK so we want URLs of the original image hosted by the indexed sites. We don't want to use Google's thumbnails, though I bet they would work OK too. But ok let's go for the originals.
 
@@ -113,6 +115,8 @@ It looks like it will work and... Woops!
 It looks like it doesn't actually fill in the `href` attribute unless you actually interact with the image thumbnail. Tricky, tricky, Google...
 
 One solution would be to actually click on every thumbnail... I actually tried to do that in an automated way, and it didn't work. Google, you win, I give up now, before attempting to write my own [Selenium](https://www.selenium.dev/)...
+
+## Trying to scrape Bing image search
 
 How about trying the same thing with Bing image search? That was the original goal, right, to get Bing images. I couldn't use the API for some reason, so let's try another way?
 
@@ -224,12 +228,25 @@ urls = Array.from(document.querySelectorAll(".iusc")).map(el => JSON.parse(el.at
 window.open('data:text/csv;charset=utf-8,' + escape(urls.join('\n')));
 ```
 
-Oh my, now that blanks out the Bing image search for a time...
+Oh my, now that blanks out the Bing image search for a time... That was with Google Chrome. I wonder if using Microsoft Edge, a pretty good browser, works better with Bing... Nope.
 
-That was with Google Chrome. I wonder if using Microsoft Edge, a pretty good browser, works better with Bing... Nope.
-
-Well... Bing Search in general is responding very poorly now. I can only get the default 35 hits, the interface shows a lot of broken images (which don't matter for my purposes, but it's a bad sign).
+Well... Bing Search in general is responding very poorly now. I can only get the default 35 hits, the interface shows a lot of broken images (which don't matter for my purposes, but it's a bad sign). It was working fine yesterday...
 
 It reminds me of when I was in China, and I searched for something considered "problematic" by the Great Firewall, and I was "punished for a few minutes by my Internet connection getting all broken. I may be paranoid. But there's something about the process that makes you paranoid...
 
 For now I'll just push through to get the whole process done with sets of 35 images, and we'll see if Bing works better later, otherwise I may explore other possibilities, sigh...
+
+## Loading the images into a Jupyter notebook
+
+The method suggested by the book, using the Bing API, does everything "in the cloud".
+But using the Image search scraping method, we produce a file using a browser on the local PC with a list of URLs. This file needs to be transferred from the local PC to the cloud-based Notebook somehow.
+
+The fast.ai library has a `download_images()` which requires a list...
+
+ It turns out you can go to the directory view and upload anything you want, so those files, I can just make them accessible that way.
+
+This seems to be what's recommended in the old "How to scrape Google" article cited at the top:
+
+```python
+download_images(/path/to/download/file, destination_folder)
+```
