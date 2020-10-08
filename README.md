@@ -260,3 +260,23 @@ window.open('data:text/csv;charset=utf-8,' + escape(urls.join('\n')));
 Note: this is where turning off any ad-blocker software in the browser is important. ublock prevented me from downloading or downloaded an empty file until I disabled it.
 
 Next I should make sure that this works if I scroll down a bit to collect more than the default 35 images.
+
+So, to recap, 
+
+1. Open your browser and go here: <https://www.bing.com/images/search?q=grizzly+bear>
+2. Press Ctrl-Shift-J to bring up the developer tools console
+3. Paste this text in 
+```javascript
+urls = Array.from(document.querySelectorAll(".iusc")).map(el => JSON.parse(el.attributes.m.value).murl);
+window.open('data:text/csv;charset=utf-8,' + escape(urls.join('\n')));
+```
+
+Oh my, now that blanks out the Bing image search for a time...
+
+That was with Google Chrome. I wonder if using Microsoft Edge, a pretty good browser, works better with Bing... Nope.
+
+Well... Bing Search in general is responding very poorly now. I can only get the default 35 hits, the interface shows a lot of broken images (which don't matter for my purposes, but it's a bad sign).
+
+It reminds me of when I was in China, and I searched for something considered "problematic" by the Great Firewall, and I was "punished for a few minutes by my Internet connection getting all broken. I may be paranoid. But there's something about the process that makes you paranoid...
+
+For now I'll just push through to get the whole process done with sets of 35 images, and we'll see if Bing works better later, otherwise I may explore other possibilities, sigh...
