@@ -236,6 +236,16 @@ It reminds me of when I was in China, and I searched for something considered "p
 
 For now I'll just push through to get the whole process done with sets of 35 images, and we'll see if Bing works better later, otherwise I may explore other possibilities, sigh...
 
+Update: indeed Bing works much better a day later! I got over 800 image URLs for each type of bear. Perhaps my paranoia was unwarranted, and it was Bing Search that was having a bad day, not me!
+
+The updated sequence to follow is:
+
+1. Open the developer console first
+2. Do the search
+3. Scroll down to the end of the page, which will load more search results, and keep scrolling until it doesn't go further. You can use the space bar or Page Down key to scroll down.
+4. Click the "See more images" button to load more search results, and repeat step 3.
+5. Enter the magic Javascript formula in the console to do the download.
+
 ## Loading the images into a Jupyter notebook
 
 The method suggested by the book, using the Bing API, does everything "in the cloud".
